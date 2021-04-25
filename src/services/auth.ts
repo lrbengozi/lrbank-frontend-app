@@ -16,6 +16,6 @@ export function singIn(): Promise<Response> {
           email: 'email@email.com',
         },
       })
-    }, 2000);
+    }, 1000);
   });
 }

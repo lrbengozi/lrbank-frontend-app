@@ -27,14 +27,12 @@ export const AuthProvider: React.FC = ({ children }) => {
       const storagedUser = await AsyncStorage.getItem('@LRBank:user')
       const storagedToken = await AsyncStorage.getItem('@LRBank:token')
 
-      await new Promise((resolve) => setTimeout(resolve, 2000));
-
       if (storagedUser && storagedToken) {
         api.defaults.headers['Authorization'] = `Bearer ${storagedToken}`;
         
-        setUser(JSON.parse(storagedUser))
-        setLoading(false)
+        setUser(JSON.parse(storagedUser))        
       }
+      setLoading(false)
     }
 
     loadStorageData();

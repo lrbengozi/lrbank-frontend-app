@@ -10,13 +10,10 @@ const styles = StyleSheet.create({
 });
 
 const SingIn: React.FC = () => {
-  const { singed, user, singIn } = useAuth();
+  const { singIn } = useAuth();
   
-  console.log(singed);
-  console.log(user);
-
   async function handleSingIn() {    
-    singIn();
+    await singIn();
   }
 
   return (
