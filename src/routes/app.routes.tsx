@@ -7,7 +7,7 @@ const AppStack = createStackNavigator();
 
 const AppRoutes: React.FC = () => (
   <AppStack.Navigator>
-    <AppStack.Screen name="SingIn" component={HomePage}/>
+    <AppStack.Screen name="HomePage" component={HomePage}/>
   </AppStack.Navigator>
 )
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Button, StyleSheet } from 'react-native';
-import { singIn } from '../../services/auth';
+import { useAuth } from '../../contexts/auth'
 
 const styles = StyleSheet.create({
   container: {
@@ -10,9 +10,13 @@ const styles = StyleSheet.create({
 });
 
 const SingIn: React.FC = () => {
-  async function handleSingIn() {
-    const response = await singIn();
-    console.log(response);
+  const { singed, user, singIn } = useAuth();
+  
+  console.log(singed);
+  console.log(user);
+
+  async function handleSingIn() {    
+    singIn();
   }
 
   return (
