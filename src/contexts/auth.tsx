@@ -30,9 +30,10 @@ export const AuthProvider: React.FC = ({ children }) => {
       if (storagedUser && storagedToken) {
         api.defaults.headers['Authorization'] = `Bearer ${storagedToken}`;
         
-        setUser(JSON.parse(storagedUser))        
+        setUser(JSON.parse(storagedUser))    
       }
-      setLoading(false)
+      
+      setLoading(false)    
     }
 
     loadStorageData();

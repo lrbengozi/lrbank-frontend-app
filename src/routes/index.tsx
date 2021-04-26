@@ -8,7 +8,7 @@ import SplashScreen from '../components/SplashScreen';
 
 const Routes: React.FC = () => {
   const { singed, loading } = useAuth();
-
+  
   return (
     loading ? <SplashScreen /> :
       singed ? <AppRoutes /> : <AuthRoutes />
