@@ -13,12 +13,6 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'flex-end',
   },
-  textLogo: {
-    fontSize: 50,
-    color: '#e46400',
-    textAlign: 'center',
-    fontFamily: 'OdibeeSans-Regular',
-  },
 });
 
 export default styles;

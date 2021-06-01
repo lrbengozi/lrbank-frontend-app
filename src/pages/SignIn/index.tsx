@@ -6,6 +6,7 @@ import {useNavigation} from '@react-navigation/native';
 import styles from '../../styles';
 import MainButton from '../../components/MainButton';
 import MainButtonOutline from '../../components/MainButtonOutline';
+import TitleText from '../../components/TitleText';
 
 function SignIn() {
   const {signIn} = useAuth();
@@ -18,7 +19,7 @@ function SignIn() {
   return (
     <View style={styles.container}>
       <View style={styles.center}>
-        <Text style={styles.textLogo}>LRBank</Text>
+        <TitleText caption="LRBank" />
       </View>
       <View style={styles.footer}>
         <MainButton
