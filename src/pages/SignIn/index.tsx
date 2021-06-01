@@ -1,9 +1,11 @@
 import React from 'react';
-import {View, TouchableHighlight, StyleSheet, Text} from 'react-native';
+import {View, Text} from 'react-native';
 import {useAuth} from '../../contexts/auth';
 import {useNavigation} from '@react-navigation/native';
 
 import styles from '../../styles';
+import MainButton from '../../components/MainButton';
+import MainButtonOutline from '../../components/MainButtonOutline';
 
 function SignIn() {
   const {signIn} = useAuth();
@@ -19,18 +21,11 @@ function SignIn() {
         <Text style={styles.textLogo}>LRBank</Text>
       </View>
       <View style={styles.buttons}>
-        <TouchableHighlight
-          style={styles.appButtonCreateAccount}
+        <MainButton
+          caption="Criar Conta"
           onPress={() => navigation.navigate('SignUp')}
-          underlayColor="#ddd">
-          <Text style={styles.appButtonCreateAccountText}>Criar Conta</Text>
-        </TouchableHighlight>
-        <TouchableHighlight
-          style={styles.appButtonLogin}
-          onPress={() => {}}
-          underlayColor="#ddd">
-          <Text style={styles.appButtonLoginText}>Já tenho conta</Text>
-        </TouchableHighlight>
+        />
+        <MainButtonOutline caption="Já tenho conta" onPress={() => {}} />
       </View>
     </View>
   );
