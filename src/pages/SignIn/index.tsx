@@ -1,6 +1,7 @@
 import React from 'react';
 import {View, TouchableHighlight, StyleSheet, Text} from 'react-native';
 import {useAuth} from '../../contexts/auth';
+import {useNavigation} from '@react-navigation/native';
 
 const styles = StyleSheet.create({
   container: {
@@ -13,7 +14,7 @@ const styles = StyleSheet.create({
   },
   textLogo: {
     fontSize: 50,
-    color: '#c62828',
+    color: '#e46400',
     textAlign: 'center',
     fontFamily: 'sans-serif-thin',
   },
@@ -24,7 +25,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
     borderRadius: 10,
     padding: 10,
-    backgroundColor: '#c62828',
+    backgroundColor: '#e46400',
   },
   appButtonCreateAccountText: {
     fontSize: 16,
@@ -36,17 +37,18 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     borderWidth: 1,
     padding: 10,
-    borderColor: '#c62828',
+    borderColor: '#e46400',
   },
   appButtonLoginText: {
     fontSize: 16,
-    color: '#c62828',
+    color: '#e46400',
     textAlign: 'center',
   },
 });
 
-const SignIn: React.FC = () => {
+function SignIn() {
   const {signIn} = useAuth();
+  const navigation = useNavigation();
 
   async function handleSignIn() {
     await signIn();
@@ -60,7 +62,7 @@ const SignIn: React.FC = () => {
       <View style={styles.buttons}>
         <TouchableHighlight
           style={styles.appButtonCreateAccount}
-          onPress={() => {}}
+          onPress={() => navigation.navigate('SignUp')}
           underlayColor="#ddd">
           <Text style={styles.appButtonCreateAccountText}>Criar Conta</Text>
         </TouchableHighlight>
@@ -73,6 +75,6 @@ const SignIn: React.FC = () => {
       </View>
     </View>
   );
-};
+}
 
 export default SignIn;
