@@ -1,11 +1,11 @@
 import React from 'react';
-import { View, TouchableHighlight, StyleSheet, Text } from 'react-native';
-import { useAuth } from '../../contexts/auth'
+import {View, TouchableHighlight, StyleSheet, Text} from 'react-native';
+import {useAuth} from '../../contexts/auth';
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "flex-end"
+    justifyContent: 'flex-end',
   },
   textContainer: {
     alignSelf: 'center',
@@ -13,8 +13,8 @@ const styles = StyleSheet.create({
   },
   textLogo: {
     fontSize: 50,
-    color: "#c62828",
-    textAlign: "center",
+    color: '#c62828',
+    textAlign: 'center',
     fontFamily: 'sans-serif-thin',
   },
   buttons: {
@@ -24,32 +24,32 @@ const styles = StyleSheet.create({
     marginTop: 10,
     borderRadius: 10,
     padding: 10,
-    backgroundColor: "#c62828",
+    backgroundColor: '#c62828',
   },
   appButtonCreateAccountText: {
     fontSize: 16,
-    color: "#fff",
-    textAlign: "center",
+    color: '#fff',
+    textAlign: 'center',
   },
   appButtonLogin: {
     marginTop: 10,
     borderRadius: 10,
     borderWidth: 1,
     padding: 10,
-    borderColor: "#c62828"
+    borderColor: '#c62828',
   },
   appButtonLoginText: {
     fontSize: 16,
-    color: "#c62828",
-    textAlign: "center",
-  }
+    color: '#c62828',
+    textAlign: 'center',
+  },
 });
 
-const SingIn: React.FC = () => {
-  const { singIn } = useAuth();
+const SignIn: React.FC = () => {
+  const {signIn} = useAuth();
 
-  async function handleSingIn() {
-    await singIn();
+  async function handleSignIn() {
+    await signIn();
   }
 
   return (
@@ -60,21 +60,19 @@ const SingIn: React.FC = () => {
       <View style={styles.buttons}>
         <TouchableHighlight
           style={styles.appButtonCreateAccount}
-          onPress={() => { }}
-          underlayColor='#ddd'
-        >
+          onPress={() => {}}
+          underlayColor="#ddd">
           <Text style={styles.appButtonCreateAccountText}>Criar Conta</Text>
         </TouchableHighlight>
         <TouchableHighlight
           style={styles.appButtonLogin}
-          onPress={() => { }}
-          underlayColor='#ddd'
-        >
+          onPress={() => {}}
+          underlayColor="#ddd">
           <Text style={styles.appButtonLoginText}>Já tenho conta</Text>
         </TouchableHighlight>
       </View>
     </View>
-  )
-}
+  );
+};
 
-export default SingIn;
+export default SignIn;

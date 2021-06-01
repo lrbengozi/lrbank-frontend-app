@@ -1,4 +1,4 @@
-import React, { createContext, useState, useEffect, useContext } from 'react';
+import React, {createContext, useState, useEffect, useContext} from 'react';
 import AsyncStorage from '@react-native-community/async-storage';
 import * as auth from '../services/auth';
 import api from '../services/api';
@@ -6,64 +6,65 @@ import api from '../services/api';
 type User = {
   name: string;
   email: string;
-}
+};
 
 type AuthContextData = {
   singed: boolean;
   user: User | null;
   loading: boolean;
-  singIn(): Promise<void>;
-  singOut(): void;
-}
+  signIn(): Promise<void>;
+  signOut(): void;
+};
 
 const AuthContext = createContext<AuthContextData>({} as AuthContextData);
 
-export const AuthProvider: React.FC = ({ children }) => {
+export const AuthProvider: React.FC = ({children}) => {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     async function loadStorageData() {
-      const storagedUser = await AsyncStorage.getItem('@LRBank:user')
-      const storagedToken = await AsyncStorage.getItem('@LRBank:token')
+      const storagedUser = await AsyncStorage.getItem('@LRBank:user');
+      const storagedToken = await AsyncStorage.getItem('@LRBank:token');
 
       if (storagedUser && storagedToken) {
         api.defaults.headers['Authorization'] = `Bearer ${storagedToken}`;
-        
-        setUser(JSON.parse(storagedUser))    
+
+        setUser(JSON.parse(storagedUser));
       }
-      
-      setLoading(false)    
+
+      setLoading(false);
     }
 
     loadStorageData();
-  })
+  });
 
-  async function singIn() {
-    const response = await auth.singIn();
+  async function signIn() {
+    const response = await auth.signIn();
 
     setUser(response.user);
 
     api.defaults.headers['Authorization'] = `Bearer ${response.token}`;
 
-    await AsyncStorage.setItem('@LRBank:user', JSON.stringify(response.user))
-    await AsyncStorage.setItem('@LRBank:token', JSON.stringify(response.token))
+    await AsyncStorage.setItem('@LRBank:user', JSON.stringify(response.user));
+    await AsyncStorage.setItem('@LRBank:token', JSON.stringify(response.token));
   }
 
-  async function singOut() {
-    await AsyncStorage.clear()
+  async function signOut() {
+    await AsyncStorage.clear();
     setUser(null);
   }
 
   return (
-    <AuthContext.Provider value={{ singed: !!user, user, loading, singIn, singOut }}>
+    <AuthContext.Provider
+      value={{singed: !!user, user, loading, signIn, signOut}}>
       {children}
     </AuthContext.Provider>
   );
-}
+};
 
 export function useAuth() {
-  const context = useContext(AuthContext)
+  const context = useContext(AuthContext);
 
-  return context
+  return context;
 }

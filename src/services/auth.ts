@@ -3,10 +3,10 @@ type Response = {
   user: {
     name: string;
     email: string;
-  },
-}
+  };
+};
 
-export function singIn(): Promise<Response> {
+export function signIn(): Promise<Response> {
   return new Promise(resolve => {
     setTimeout(() => {
       resolve({
@@ -15,7 +15,7 @@ export function singIn(): Promise<Response> {
           name: 'Luiz',
           email: 'email@email.com',
         },
-      })
+      });
     }, 1000);
   });
 }

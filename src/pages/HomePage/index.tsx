@@ -1,6 +1,6 @@
 import React from 'react';
-import { View, Button, StyleSheet, Text } from 'react-native';
-import { useAuth } from '../../contexts/auth'
+import {View, Button, StyleSheet, Text} from 'react-native';
+import {useAuth} from '../../contexts/auth';
 
 const styles = StyleSheet.create({
   container: {
@@ -11,18 +11,18 @@ const styles = StyleSheet.create({
 });
 
 const HomePage: React.FC = () => {
-  const { user, singOut } = useAuth();
+  const {user, signOut} = useAuth();
 
-  async function handleSingOut() {
-    singOut();
+  async function handleSignOut() {
+    signOut();
   }
 
   return (
     <View style={styles.container}>
       <Text>{user?.name}</Text>
-      <Button title="Sing Out" onPress={handleSingOut} />
+      <Button title="Sing Out" onPress={handleSignOut} />
     </View>
-  )
-}
+  );
+};
 
 export default HomePage;

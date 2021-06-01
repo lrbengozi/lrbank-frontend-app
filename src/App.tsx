@@ -1,10 +1,9 @@
 import 'react-native-gesture-handler';
 
 import React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
+import {NavigationContainer} from '@react-navigation/native';
 import Routes from './routes';
-import { AuthProvider } from './contexts/auth';
-import { singIn } from './services/auth';
+import {AuthProvider} from './contexts/auth';
 
 const App: React.FC = () => {
   return (
@@ -13,7 +12,7 @@ const App: React.FC = () => {
         <Routes />
       </AuthProvider>
     </NavigationContainer>
-  )
+  );
 };
 
 export default App;
