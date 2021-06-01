@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
     fontSize: 50,
     color: '#e46400',
     textAlign: 'center',
-    fontFamily: 'sans-serif-thin',
+    fontFamily: 'OdibeeSans-Regular',
   },
   buttons: {
     padding: 10,
