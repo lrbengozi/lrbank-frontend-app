@@ -17,10 +17,10 @@ function SignIn() {
 
   return (
     <View style={styles.container}>
-      <View style={styles.textContainer}>
+      <View style={styles.center}>
         <Text style={styles.textLogo}>LRBank</Text>
       </View>
-      <View style={styles.buttons}>
+      <View style={styles.footer}>
         <MainButton
           caption="Criar Conta"
           onPress={() => navigation.navigate('SignUp')}
