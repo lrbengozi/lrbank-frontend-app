@@ -1,49 +1,49 @@
 import React from 'react';
-import {View, ScrollView, TextInput, Animated} from 'react-native';
+import {View} from 'react-native';
+import MainButton from '../../components/MainButton';
 import MainTextInput from '../../components/MainTextInput';
 
 import TitleText from '../../components/TitleText';
-import {useAuth} from '../../contexts/auth';
 
 import styles from '../../styles';
 
 const SignUp: React.FC = () => {
-  const [scrollY, setScrollY] = React.useState(new Animated.Value(0));
+  const [fullName, setFullName] = React.useState('');
+  const [email, setEmail] = React.useState('');
+  const [socialSecurityNumber, setSocialSecurityNumber] = React.useState('');
+  const [cpf, setCpf] = React.useState('');
   return (
     <View style={styles.container}>
-      <Animated.View
-        style={[
-          styles.header,
-          {
-            height: scrollY.interpolate({
-              inputRange: [10, 120, 145],
-              outputRange: [100, 10, 0],
-              extrapolate: 'clamp',
-            }),
-            opacity: scrollY.interpolate({
-              inputRange: [1, 80, 170],
-              outputRange: [1, 0.5, 0],
-              extrapolate: 'clamp',
-            }),
-          },
-        ]}>
+      <View style={styles.header}>
         <TitleText caption="LRBank" />
-      </Animated.View>
-      <ScrollView
-        scrollEventThrottle={16}
-        onScroll={Animated.event(
-          [
-            {
-              nativeEvent: {
-                contentOffset: {y: scrollY},
-              },
-            },
-          ],
-          {useNativeDriver: false},
-        )}>
-        <MainTextInput placeholder="Primeiro Nome" />
-        <MainTextInput placeholder="Sobrenome" />
-      </ScrollView>
+      </View>
+      <View>
+        <MainTextInput
+          placeholder="Nome Completo"
+          value={fullName}
+          onChangeText={setFullName}
+        />
+        <MainTextInput
+          placeholder="E-mail"
+          value={email}
+          onChangeText={setEmail}
+        />
+        <MainTextInput
+          placeholder="RG ou CNH"
+          keyboardType="numeric"
+          value={socialSecurityNumber}
+          onChangeText={setSocialSecurityNumber}
+        />
+        <MainTextInput
+          placeholder="CPF"
+          keyboardType="numeric"
+          value={cpf}
+          onChangeText={setCpf}
+        />
+      </View>
+      <View style={styles.footer}>
+        <MainButton caption="Cadastrar" onPress={() => {}} />
+      </View>
     </View>
   );
 };

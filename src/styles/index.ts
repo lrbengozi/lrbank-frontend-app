@@ -10,11 +10,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   header: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    paddingRight: 10,
-    paddingLeft: 10,
+    justifyContent: 'flex-start',
+    paddingTop: 15,
+    paddingBottom: 15,
   },
   footer: {
     flex: 1,
