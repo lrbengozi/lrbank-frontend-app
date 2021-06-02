@@ -9,6 +9,13 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
   },
+  header: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingRight: 10,
+    paddingLeft: 10,
+  },
   footer: {
     flex: 1,
     justifyContent: 'flex-end',

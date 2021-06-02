@@ -1,29 +1,49 @@
 import React from 'react';
-import {
-  View,
-  TouchableHighlight,
-  StyleSheet,
-  Text,
-  TextInput,
-} from 'react-native';
+import {View, ScrollView, TextInput, Animated} from 'react-native';
+import MainTextInput from '../../components/MainTextInput';
+
+import TitleText from '../../components/TitleText';
 import {useAuth} from '../../contexts/auth';
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    padding: 10,
-  },
-  input: {
-    borderWidth: 0.5,
-    borderRadius: 5,
-  },
-});
+import styles from '../../styles';
 
 const SignUp: React.FC = () => {
+  const [scrollY, setScrollY] = React.useState(new Animated.Value(0));
   return (
     <View style={styles.container}>
-      <TextInput style={styles.input} placeholder="Primeiro Nome" />
+      <Animated.View
+        style={[
+          styles.header,
+          {
+            height: scrollY.interpolate({
+              inputRange: [10, 120, 145],
+              outputRange: [100, 10, 0],
+              extrapolate: 'clamp',
+            }),
+            opacity: scrollY.interpolate({
+              inputRange: [1, 80, 170],
+              outputRange: [1, 0.5, 0],
+              extrapolate: 'clamp',
+            }),
+          },
+        ]}>
+        <TitleText caption="LRBank" />
+      </Animated.View>
+      <ScrollView
+        scrollEventThrottle={16}
+        onScroll={Animated.event(
+          [
+            {
+              nativeEvent: {
+                contentOffset: {y: scrollY},
+              },
+            },
+          ],
+          {useNativeDriver: false},
+        )}>
+        <MainTextInput placeholder="Primeiro Nome" />
+        <MainTextInput placeholder="Sobrenome" />
+      </ScrollView>
     </View>
   );
 };
