@@ -12,7 +12,7 @@ type AuthContextData = {
   singed: boolean;
   user: User | null;
   loading: boolean;
-  signIn(): Promise<void>;
+  signIn(email: string, password: string): Promise<void>;
   signOut(): void;
 };
 
@@ -39,15 +39,22 @@ export const AuthProvider: React.FC = ({children}) => {
     loadStorageData();
   });
 
-  async function signIn() {
-    const response = await auth.signIn();
+  async function signIn(email: string, password: string) {
+    try {
+      const response = await auth.signIn(email, password);
 
-    setUser(response.user);
+      setUser(response.user);
 
-    api.defaults.headers['Authorization'] = `Bearer ${response.token}`;
+      api.defaults.headers['Authorization'] = `Bearer ${response.token}`;
 
-    await AsyncStorage.setItem('@LRBank:user', JSON.stringify(response.user));
-    await AsyncStorage.setItem('@LRBank:token', JSON.stringify(response.token));
+      await AsyncStorage.setItem('@LRBank:user', JSON.stringify(response.user));
+      await AsyncStorage.setItem(
+        '@LRBank:token',
+        JSON.stringify(response.token),
+      );
+    } catch (error) {
+      console.log(`Error on SignIn: ${error.message}`);
+    }
   }
 
   async function signOut() {

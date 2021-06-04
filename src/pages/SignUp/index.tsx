@@ -10,8 +10,9 @@ import styles from '../../styles';
 const SignUp: React.FC = () => {
   const [fullName, setFullName] = React.useState('');
   const [email, setEmail] = React.useState('');
+  const [password, setPassword] = React.useState('');
+  const [idDocument, setidDocument] = React.useState('');
   const [socialSecurityNumber, setSocialSecurityNumber] = React.useState('');
-  const [cpf, setCpf] = React.useState('');
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -31,14 +32,20 @@ const SignUp: React.FC = () => {
         <MainTextInput
           placeholder="RG ou CNH"
           keyboardType="numeric"
-          value={socialSecurityNumber}
-          onChangeText={setSocialSecurityNumber}
+          value={idDocument}
+          onChangeText={setidDocument}
         />
         <MainTextInput
           placeholder="CPF"
           keyboardType="numeric"
-          value={cpf}
-          onChangeText={setCpf}
+          value={socialSecurityNumber}
+          onChangeText={setSocialSecurityNumber}
+        />
+        <MainTextInput
+          placeholder="Senha"
+          value={password}
+          onChangeText={setPassword}
+          secureTextEntry={true}
         />
       </View>
       <View style={styles.footer}>

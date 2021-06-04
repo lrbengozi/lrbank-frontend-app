@@ -12,12 +12,14 @@ import MainTextInput from '../../components/MainTextInput';
 
 function SignIn() {
   const [modalVisible, setModalVisible] = React.useState(false);
+  const [email, setEmail] = React.useState('email@email.com');
+  const [password, setPassword] = React.useState('testesenha');
 
   const {signIn} = useAuth();
   const navigation = useNavigation();
 
   async function handleSignIn() {
-    await signIn();
+    await signIn(email, password);
   }
 
   return (
@@ -45,11 +47,17 @@ function SignIn() {
               <View style={styles.footer}>
                 <View style={localStyle.modalView}>
                   <MainTextInput
-                    placeholder="Numero da conta con dígito"
-                    keyboardType="numeric"
+                    placeholder="Email"
+                    value={email}
+                    onChangeText={setEmail}
                   />
-                  <MainTextInput placeholder="Senha" secureTextEntry={true} />
-                  <MainButton caption="Entrar" onPress={() => {}} />
+                  <MainTextInput
+                    placeholder="Senha"
+                    secureTextEntry={true}
+                    value={password}
+                    onChangeText={setPassword}
+                  />
+                  <MainButton caption="Entrar" onPress={handleSignIn} />
                 </View>
               </View>
             </TouchableWithoutFeedback>
